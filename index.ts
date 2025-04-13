@@ -1,78 +1,54 @@
 /**
- * * Practice Problem
- * * You are building a simple library management system.
- * * Implement the following requirements using TypeScript:
- *
- * TODO: 1. Create a class Book with the following properties:
- * * - title (string, required)
- * * - author (string, required)
- * * - yearPublished (number, optional)
- * * - ISBN (string, readonly)
- *
- * TODO: 2. Define a constructor function to initialize the Book class with title, author,yearPublished, and ISBN.
- *
- * TODO: 3. Ensure that the constructor function uses the this keyword to assign values to the class properties.
- *
- * TODO: 4. Create an instance of the Book class and log its details.
- *
- * TODO: 5. Create a function logBookDetails that takes an instance of Book as a parameter and logs its details.
- *
- * TODO: 6. Create a subclass EBook that extends the Book class. Add the following properties:
- * * - fileSize (number, required)
- * * - format (string, required)
- *
- * TODO:7. Use the super method to call the constructor of the parent class Book from the EBook class.
- *
- * TODO: 8. Ensure that the yearPublished property in the Book class is optional and the ISBN property is readonly.
+ * Practice Excercise for functions
  */
 
-class Book {
-  title: string;
-  author: string;
-  yearPublished?: number;
-  readonly ISBN: string;
+//* 1. Declare a function named greet that takes a string parameter name and returns a greeting message.
 
-  constructor(
-    title: string,
-    author: string,
-    ISBN: string,
-    yearPublished?: number
-  ) {
-    this.title = title;
-    this.author = author;
-    this.ISBN = ISBN;
+function greet(name: string): string {
+  return `Hello ${name}, welcome abord!`;
+}
+console.log(greet('Sujay'));
 
-    if (yearPublished) {
-      this.yearPublished = yearPublished;
-    }
-  }
+//* 2. Define an type Product with properties id (number) and name (string). Create a function named getProduct that takes an id parameter and returns a Product.
+
+type Product = {
+  id: number;
+  name: string;
+};
+
+function getProduct(id: number): Product {
+  return {
+    id,
+    name: 'Product',
+  };
 }
 
-const firstBook = new Book('bookName', 'sujay', 'asdasdas', 2025);
+console.log(getProduct(23));
 
-function logBookDetails(book: Book): void {
-  console.log(book);
+//* 3. Declare a function signature named Calculator as a type that takes two numbers and returns a number. Implement two functions add and subtract that match this signature.
+
+type Calculator = (a: number, b: number) => number;
+
+const addNum: Calculator = (a: number, b: number) => {
+  return a + b;
+};
+
+const subNum: Calculator = (a: number, b: number) => {
+  return a - b;
+};
+console.log(addNum(2, 4));
+console.log(subNum(2, 4));
+
+//* 4. Create a function named logMessage that takes a string message and logs it to the console, returning void. Also, create a function named throwError that takes a string message and throws an error, returning never.
+
+function logMessage(message: string): void {
+  console.log(message);
 }
 
-logBookDetails(firstBook);
+logMessage('dummy message');
 
-class EBook extends Book {
-  fileSize: number;
-  format: string;
-
-  constructor(
-    title: string,
-    author: string,
-    ISBN: string,
-    fileSize: number,
-    format: string,
-    yearPublished?: number
-  ) {
-    super(title, author, ISBN, yearPublished);
-    this.fileSize = fileSize;
-    this.format = format;
-  }
+function throwError(message: string): never {
+  throw new Error(message);
 }
 
-const firstEBook = new EBook('bookName', 'sujay', 'asdasdas', 24, 'pdf', 2025);
-logBookDetails(firstEBook);
+console.log(throwError('dummy error'));
